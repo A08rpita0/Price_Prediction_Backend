@@ -1,9 +1,20 @@
+
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import util
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://price-prediction-backend-4.onrender.com"}})
+# Replace these with your actual deployed URLs when ready
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",    # Local development
+    "http://localhost:5000",    # Local development alternative
+    "https://price-prediction-frontend-1sbz.vercel.app/",
+    "https://vercel.com/arpita-s-projects-e006ebdb/price-prediction-frontend-1sbz/qQeDEkyvomSHJgkogX1FSSSEBTcs"
+]
+
+CORS(app, resources={r"/*": {"origins": ALLOWED_ORIGINS}})
+
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
